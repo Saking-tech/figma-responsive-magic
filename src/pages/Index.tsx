@@ -17,7 +17,7 @@ const Index = () => {
   };
 
   const handleSignIn = () => {
-    toast.success("Sign in successful!");
+    navigate('/signin');
   };
 
   return (
