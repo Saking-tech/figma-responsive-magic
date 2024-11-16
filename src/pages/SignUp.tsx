@@ -28,9 +28,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-6 py-8">
-      {/* Logo */}
-      <div className="mb-8">
+    <div className="min-h-screen flex flex-col px-6 py-8">
+      {/* Logo - Now left aligned */}
+      <div className="mb-8 text-left">
         <img 
           src="/logo.svg" 
           alt="Rolodex" 
@@ -39,8 +39,8 @@ const SignUp = () => {
         <h1 className="text-3xl font-bold mt-4">ROLODEX</h1>
       </div>
 
-      <div className="w-full max-w-md space-y-6">
-        <h2 className="text-3xl font-bold">Sign Up</h2>
+      <div className="w-full max-w-md space-y-6 mx-auto">
+        <h2 className="text-3xl font-bold text-left">Sign Up</h2>
         
         <form onSubmit={handleSignUp} className="space-y-4">
           <div>
