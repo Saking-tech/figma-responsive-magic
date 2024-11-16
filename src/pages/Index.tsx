@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import StatusBar from '../components/StatusBar';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -23,8 +22,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-rolodex-background flex flex-col">
-      <StatusBar />
-      
       <main className="flex-1 flex flex-col items-center justify-between px-6 py-8">
         <div className="w-full max-w-md flex flex-col items-center justify-center flex-1 gap-8">
           {/* Logo */}
