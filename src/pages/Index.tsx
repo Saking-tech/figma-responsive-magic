@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const [agreed, setAgreed] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignUp = () => {
     if (!agreed) {
       toast.error("Please agree to the Terms and Privacy Policy");
       return;
     }
-    // Handle sign up logic
-    toast.success("Sign up successful!");
+    navigate('/signup');
   };
 
   const handleSignIn = () => {
-    // Handle sign in logic
     toast.success("Sign in successful!");
   };
 
