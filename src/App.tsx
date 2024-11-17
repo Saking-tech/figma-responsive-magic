@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import ProfileSetup from "./pages/ProfileSetup";
+import ProfileComplete from "./pages/ProfileComplete";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
+          <Route path="/profile-complete" element={<ProfileComplete />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

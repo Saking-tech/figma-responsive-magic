@@ -44,6 +44,7 @@ const ProfileSetup = () => {
     e.preventDefault();
     // Here you would typically make an API call to save the profile data
     toast.success("Profile updated successfully!");
+    navigate('/profile-complete');
   };
 
   return (
