@@ -130,20 +130,50 @@ const Contact = () => {
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t w-full">
         <div className="flex justify-around items-center h-20 px-6">
-          <Button variant="ghost" size="icon" onClick={() => navigate('/keypad')}>
-            <Keyboard className="h-6 w-6" />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate('/keypad')}
+            className="flex flex-col items-center gap-1"
+          >
+            <Keyboard className="h-6 w-6 text-gray-500" />
+            <span className="text-xs text-gray-500">Keypad</span>
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/contact')} className="text-blue-500">
-            <Phone className="h-6 w-6" />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate('/contact')} 
+            className="flex flex-col items-center gap-1"
+          >
+            <Phone className="h-6 w-6 text-blue-500" />
+            <span className="text-xs text-blue-500">Contact</span>
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/pa')}>
-            <MessageSquare className="h-6 w-6" />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate('/pa')}
+            className="flex flex-col items-center gap-1"
+          >
+            <MessageSquare className="h-6 w-6 text-gray-500" />
+            <span className="text-xs text-gray-500">PA</span>
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/profile')}>
-            <User className="h-6 w-6" />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate('/profile')}
+            className="flex flex-col items-center gap-1"
+          >
+            <User className="h-6 w-6 text-gray-500" />
+            <span className="text-xs text-gray-500">Profile</span>
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/setting')}>
-            <Settings className="h-6 w-6" />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate('/setting')}
+            className="flex flex-col items-center gap-1"
+          >
+            <Settings className="h-6 w-6 text-gray-500" />
+            <span className="text-xs text-gray-500">Setting</span>
           </Button>
         </div>
       </div>
