@@ -18,6 +18,20 @@ const PA = () => {
   const [inputMessage, setInputMessage] = useState("");
   const [isUpdatesOpen, setIsUpdatesOpen] = useState(false);
 
+  const handleBotResponse = (userMessage: string): string => {
+    const lowerCaseMessage = userMessage.toLowerCase();
+    
+    if (lowerCaseMessage.includes("quit chat")) {
+      return "Good bye!";
+    } else if (lowerCaseMessage.includes("search")) {
+      const searchQuery = userMessage.toLowerCase().replace("search", "").trim();
+      // Open Google search in a new tab
+      window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, '_blank');
+      return `Searching for "${searchQuery}" in Google...`;
+    }
+    return "Sure, I will help you with that!";
+  };
+
   const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
 
@@ -28,7 +42,7 @@ const PA = () => {
     };
 
     const botResponse: ChatMessage = {
-      text: "Sure, I will help you with that!",
+      text: handleBotResponse(inputMessage),
       isUser: false,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
