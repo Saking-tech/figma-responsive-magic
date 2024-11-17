@@ -49,11 +49,11 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 w-full">
       {/* Top Navigation */}
-      <div className="sticky top-0 bg-white shadow-sm z-10">
-        <div className="flex items-center justify-center p-4">
-          <div className="flex-1 max-w-md mx-auto relative">
+      <div className="sticky top-0 bg-white shadow-sm z-10 w-full">
+        <div className="flex items-center justify-center p-4 w-full">
+          <div className="flex-1 max-w-full px-4">
             <Input
               type="search"
               placeholder="Search"
@@ -72,7 +72,7 @@ const Contact = () => {
         </div>
 
         {/* Sort Icons */}
-        <div className="px-4 pb-2 flex items-center justify-center space-x-6">
+        <div className="w-full px-4 pb-2 flex items-center justify-center space-x-6">
           <ArrowDownAZ className="h-6 w-6 text-blue-500" />
           <Instagram className="h-6 w-6 text-gray-500" />
           <Linkedin className="h-6 w-6 text-gray-500" />
@@ -88,14 +88,14 @@ const Contact = () => {
       </div>
 
       {/* Contact List */}
-      <div className="pb-20">
+      <div className="pb-20 w-full">
         {contacts.map((section) => (
-          <div key={section.id}>
-            <div className="bg-blue-500 text-white px-4 py-2 text-center">
+          <div key={section.id} className="w-full">
+            <div className="bg-blue-500 text-white px-4 py-2 text-center w-full">
               {section.letter}
             </div>
             {section.contacts.map((contact, index) => (
-              <div key={index} className="bg-white p-4 border-b flex items-center justify-center">
+              <div key={index} className="bg-white p-4 border-b flex items-center justify-center w-full">
                 <div className="flex items-center space-x-3">
                   <Avatar>
                     <AvatarImage src={contact.avatar} alt={contact.name} />
@@ -128,8 +128,8 @@ const Contact = () => {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t">
-        <div className="flex justify-around items-center h-20 px-6 max-w-md mx-auto">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t w-full">
+        <div className="flex justify-around items-center h-20 px-6">
           <Button variant="ghost" size="icon" onClick={() => navigate('/keypad')}>
             <Keyboard className="h-6 w-6" />
           </Button>
