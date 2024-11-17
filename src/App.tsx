@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import ProfileSetup from "./pages/ProfileSetup";
 import ProfileComplete from "./pages/ProfileComplete";
+import PA from "./pages/PA";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/signin" element={<SignIn />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
           <Route path="/profile-complete" element={<ProfileComplete />} />
+          <Route path="/pa" element={<PA />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

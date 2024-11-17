@@ -11,7 +11,10 @@ const ProfileComplete = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-6 pt-20">
+    <div 
+      className="min-h-screen flex flex-col items-center px-6 pt-20"
+      onClick={() => navigate('/pa')}
+    >
       <div className="w-full max-w-md flex flex-col items-center text-center">
         {/* Contact Card Image */}
         <img 
@@ -33,7 +36,10 @@ const ProfileComplete = () => {
 
         {/* Share Button */}
         <Button 
-          onClick={handleShare}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleShare();
+          }}
           className="w-full bg-rolodex-secondary text-white h-14 rounded-full text-lg"
         >
           Share
