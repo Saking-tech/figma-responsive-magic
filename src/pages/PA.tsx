@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Keypad, User, Settings, MessageSquare, Phone } from "lucide-react";
+import { Keyboard, User, Settings, MessageSquare, Phone } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
 const PA = () => {
@@ -85,7 +85,7 @@ const PA = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t">
         <div className="flex justify-around items-center h-20 px-6 max-w-md mx-auto">
           <Button variant="ghost" size="icon" onClick={() => navigate('/keypad')}>
-            <Keypad className="h-6 w-6" />
+            <Keyboard className="h-6 w-6" />
           </Button>
           <Button variant="ghost" size="icon" onClick={() => navigate('/contact')}>
             <Phone className="h-6 w-6" />
