@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Keyboard, User, Settings, MessageSquare, Phone, Send } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ChatMessage {
   text: string;
@@ -14,18 +16,17 @@ const PA = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [isUpdatesOpen, setIsUpdatesOpen] = useState(false);
 
   const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
 
-    // Add user message
     const newUserMessage: ChatMessage = {
       text: inputMessage,
       isUser: true,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
-    // Add bot response
     const botResponse: ChatMessage = {
       text: "Sure, I will help you with that!",
       isUser: false,
@@ -38,10 +39,10 @@ const PA = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      {/* Top Section */}
-      <div className="flex-1 px-6 pt-10 pb-20">
+      {/* Main Chat Section */}
+      <div className="flex-1 px-6 pb-40">
         {/* Header */}
-        <div className="flex justify-between items-start mb-6">
+        <div className="flex justify-between items-start pt-10 mb-6">
           <div>
             <h1 className="text-2xl font-bold mb-2">Hi, Becka</h1>
             <p className="text-gray-600">How can I help you today?</p>
@@ -53,32 +54,25 @@ const PA = () => {
           />
         </div>
 
-        {/* Robot Illustration */}
-        <div className="flex justify-center my-8">
-          <img 
-            src="/robot-illustration.svg" 
-            alt="AI Assistant"
-            className="w-48 h-48"
-          />
-        </div>
-
         {/* Chat Messages */}
-        <div className="space-y-4 mb-4">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
-            >
-              <div className={`max-w-[80%] ${message.isUser ? 'bg-rolodex-secondary text-white' : 'bg-gray-100'} rounded-2xl px-4 py-2`}>
-                <p>{message.text}</p>
-                <span className="text-xs text-gray-500 mt-1">{message.timestamp}</span>
+        <ScrollArea className="h-[calc(100vh-300px)]">
+          <div className="space-y-4 mb-4">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} animate-fade-in`}
+              >
+                <div className={`max-w-[80%] ${message.isUser ? 'bg-rolodex-secondary text-white' : 'bg-gray-100'} rounded-2xl px-4 py-2`}>
+                  <p>{message.text}</p>
+                  <span className="text-xs text-gray-500 mt-1">{message.timestamp}</span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollArea>
 
         {/* Input Section */}
-        <div className="fixed bottom-20 left-0 right-0 px-6">
+        <div className="fixed bottom-32 left-0 right-0 px-6">
           <div className="relative">
             <Input
               value={inputMessage}
@@ -96,6 +90,27 @@ const PA = () => {
             </Button>
           </div>
         </div>
+      </div>
+
+      {/* Updates Section (Collapsible) */}
+      <div className="fixed bottom-20 left-0 right-0">
+        <Collapsible
+          open={isUpdatesOpen}
+          onOpenChange={setIsUpdatesOpen}
+          className="w-full bg-white border-t shadow-lg"
+        >
+          <CollapsibleTrigger className="w-full p-4 flex justify-between items-center">
+            <span className="font-semibold">Updates</span>
+            <span className="text-sm text-gray-500">
+              {isUpdatesOpen ? '▼' : '▲'}
+            </span>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="p-4">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Recent updates will appear here...</p>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
 
       {/* Bottom Navigation */}
