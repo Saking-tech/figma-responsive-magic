@@ -52,8 +52,8 @@ const Contact = () => {
     <div className="min-h-screen bg-gray-50 w-full">
       {/* Top Navigation */}
       <div className="sticky top-0 bg-white shadow-sm z-10 w-full">
-        <div className="flex items-center justify-center p-4 w-full">
-          <div className="flex-1 max-w-full px-4">
+        <div className="flex items-center p-4 w-full">
+          <div className="flex-1 px-4">
             <Input
               type="search"
               placeholder="Search"
@@ -72,7 +72,7 @@ const Contact = () => {
         </div>
 
         {/* Sort Icons */}
-        <div className="w-full px-4 pb-2 flex items-center justify-center space-x-6">
+        <div className="w-full px-4 pb-2 flex items-center space-x-6">
           <ArrowDownAZ className="h-6 w-6 text-blue-500" />
           <Instagram className="h-6 w-6 text-gray-500" />
           <Linkedin className="h-6 w-6 text-gray-500" />
@@ -91,23 +91,23 @@ const Contact = () => {
       <div className="pb-20 w-full">
         {contacts.map((section) => (
           <div key={section.id} className="w-full">
-            <div className="bg-blue-500 text-white px-4 py-2 text-center w-full">
+            <div className="bg-blue-500 text-white px-4 py-2 w-full">
               {section.letter}
             </div>
             {section.contacts.map((contact, index) => (
-              <div key={index} className="bg-white p-4 border-b flex items-center justify-center w-full">
+              <div key={index} className="bg-white p-4 border-b flex items-center justify-between w-full">
                 <div className="flex items-center space-x-3">
                   <Avatar>
                     <AvatarImage src={contact.avatar} alt={contact.name} />
                     <AvatarFallback>{contact.name[0]}</AvatarFallback>
                   </Avatar>
-                  <div className="text-center">
+                  <div className="text-left">
                     <h3 className="font-medium">{contact.name}</h3>
                     <p className="text-sm text-gray-600">{contact.phone}</p>
                     <p className="text-sm text-gray-600">{contact.email}</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-2 ml-4">
+                <div className="flex items-center space-x-2">
                   <Button variant="ghost" size="icon" className="text-blue-500">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 4V20M20 12H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
