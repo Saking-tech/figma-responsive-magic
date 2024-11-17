@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Keyboard, User, Settings, MessageSquare, Phone } from "lucide-react";
+import { Keyboard, User, Settings, MessageSquare, Phone, Instagram, Linkedin, Facebook, ArrowDownAZ } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import {
   Select,
@@ -78,18 +78,21 @@ const Contact = () => {
           </Button>
         </div>
 
-        {/* Sort Dropdown */}
-        <div className="px-4 pb-2">
-          <Select>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Sort by" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="name">Name</SelectItem>
-              <SelectItem value="recent">Recent</SelectItem>
-              <SelectItem value="favorite">Favorite</SelectItem>
-            </SelectContent>
-          </Select>
+        {/* Sort Icons */}
+        <div className="px-4 pb-2 flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <ArrowDownAZ className="h-6 w-6 text-blue-500" />
+            <Instagram className="h-6 w-6 text-gray-500" />
+            <Linkedin className="h-6 w-6 text-gray-500" />
+            <svg
+              viewBox="0 0 24 24"
+              className="h-6 w-6 text-gray-500"
+              fill="currentColor"
+            >
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+            </svg>
+            <Facebook className="h-6 w-6 text-gray-500" />
+          </div>
         </div>
       </div>
 
