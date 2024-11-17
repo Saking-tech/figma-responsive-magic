@@ -54,7 +54,7 @@ const PA = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Main Chat Section */}
-      <div className="flex-1 px-6 pb-40">
+      <div className="flex-1 px-6 pb-28">
         {/* Header */}
         <div className="flex justify-between items-start pt-10 mb-6">
           <div>
@@ -69,7 +69,7 @@ const PA = () => {
         </div>
 
         {/* Chat Messages */}
-        <ScrollArea className="h-[calc(100vh-300px)]">
+        <ScrollArea className="h-[calc(100vh-340px)]">
           <div className="space-y-4 mb-4">
             {messages.map((message, index) => (
               <div
@@ -85,8 +85,8 @@ const PA = () => {
           </div>
         </ScrollArea>
 
-        {/* Input Section */}
-        <div className="fixed bottom-32 left-0 right-0 px-6">
+        {/* Input Section - Moved up by adjusting positioning */}
+        <div className="fixed bottom-36 left-0 right-0 px-6">
           <div className="relative">
             <Input
               value={inputMessage}
