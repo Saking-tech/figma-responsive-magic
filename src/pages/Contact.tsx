@@ -72,7 +72,7 @@ const Contact = () => {
         </div>
 
         {/* Sort Icons */}
-        <div className="w-full px-4 pb-2 flex items-center space-x-6">
+        <div className="w-full px-4 pb-2 flex items-center justify-center space-x-6">
           <ArrowDownAZ className="h-6 w-6 text-blue-500" />
           <Instagram className="h-6 w-6 text-gray-500" />
           <Linkedin className="h-6 w-6 text-gray-500" />
