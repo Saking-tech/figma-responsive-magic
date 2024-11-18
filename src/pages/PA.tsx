@@ -53,7 +53,6 @@ const PA = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      {/* Main Chat Section */}
       <div className="flex-1 px-6 pb-28">
         {/* Header */}
         <div className="flex justify-between items-start pt-10 mb-6">
@@ -139,7 +138,7 @@ const PA = () => {
           <Button variant="ghost" size="icon" className="text-rolodex-secondary">
             <MessageSquare className="h-6 w-6" />
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/profile')}>
+          <Button variant="ghost" size="icon" onClick={() => navigate('/contact')}>
             <User className="h-6 w-6" />
           </Button>
           <Button variant="ghost" size="icon" onClick={() => navigate('/settings')}>
