@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft, Camera, Instagram, Linkedin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import NavigationBar from '@/components/NavigationBar';
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Contact = () => {
       </div>
 
       {/* Profile Content */}
-      <div className="relative px-6 -mt-20">
+      <div className="relative px-6 pb-24 -mt-20">
         {/* Profile Image */}
         <div className="flex justify-center">
           <div className="relative">
@@ -104,28 +105,9 @@ const Contact = () => {
             </button>
           )}
         </div>
-
-        {/* Navigation Bar */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-4">
-          <div className="flex justify-around items-center px-6">
-            <button className="flex flex-col items-center text-gray-500">
-              <span className="text-xs">Keypad</span>
-            </button>
-            <button className="flex flex-col items-center text-gray-500">
-              <span className="text-xs">Contact</span>
-            </button>
-            <button className="flex flex-col items-center text-gray-500">
-              <span className="text-xs">PA</span>
-            </button>
-            <button className="flex flex-col items-center text-rolodex-secondary">
-              <span className="text-xs">Profile</span>
-            </button>
-            <button className="flex flex-col items-center text-gray-500">
-              <span className="text-xs">Setting</span>
-            </button>
-          </div>
-        </div>
       </div>
+
+      <NavigationBar />
     </div>
   );
 };

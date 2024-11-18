@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Keyboard, User, Settings, MessageSquare, Phone, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import NavigationBar from '@/components/NavigationBar';
 
 interface ChatMessage {
   text: string;
@@ -84,7 +85,7 @@ const PA = () => {
           </div>
         </ScrollArea>
 
-        {/* Input Section - Moved up by adjusting positioning */}
+        {/* Input Section */}
         <div className="fixed bottom-36 left-0 right-0 px-6">
           <div className="relative">
             <Input
@@ -126,26 +127,7 @@ const PA = () => {
         </Collapsible>
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t">
-        <div className="flex justify-around items-center h-20 px-6 max-w-md mx-auto">
-          <Button variant="ghost" size="icon" onClick={() => navigate('/keypad')}>
-            <Keyboard className="h-6 w-6" />
-          </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/contact')}>
-            <Phone className="h-6 w-6" />
-          </Button>
-          <Button variant="ghost" size="icon" className="text-rolodex-secondary">
-            <MessageSquare className="h-6 w-6" />
-          </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/contact')}>
-            <User className="h-6 w-6" />
-          </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate('/settings')}>
-            <Settings className="h-6 w-6" />
-          </Button>
-        </div>
-      </div>
+      <NavigationBar />
     </div>
   );
 };
