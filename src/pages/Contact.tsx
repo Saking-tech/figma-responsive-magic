@@ -6,7 +6,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 const Contact = () => {
   const navigate = useNavigate();
   
-  // Get profile data from localStorage (this would typically come from your backend/state management)
   const getProfileData = () => {
     const profileData = localStorage.getItem('profileData');
     if (profileData) {
@@ -28,16 +27,23 @@ const Contact = () => {
   const fullName = `${profile.firstName} ${profile.lastName}`.trim();
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white">
       {/* Header Section with Background */}
-      <div className="relative h-64 bg-gradient-to-b from-black/50 to-transparent bg-cover bg-center"
-           style={{ backgroundImage: 'url("/lovable-uploads/101ce581-b49a-4216-a3f6-3f349b4d5da8.png")' }}>
-        <button 
-          onClick={() => navigate(-1)}
-          className="absolute top-4 left-4 text-white p-2"
-        >
-          <ArrowLeft className="h-6 w-6" />
-        </button>
+      <div 
+        className="h-80 bg-cover bg-center relative"
+        style={{ 
+          backgroundImage: 'url("https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=2062&auto=format&fit=crop")',
+          backgroundPosition: 'center 25%'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent">
+          <button 
+            onClick={() => navigate(-1)}
+            className="text-white p-4"
+          >
+            <ArrowLeft className="h-6 w-6" />
+          </button>
+        </div>
       </div>
 
       {/* Profile Content */}
@@ -45,11 +51,15 @@ const Contact = () => {
         {/* Profile Image */}
         <div className="flex justify-center">
           <div className="relative">
-            <Avatar className="w-32 h-32 border-4 border-white">
-              <AvatarFallback>{`${profile.firstName?.[0] || ''}${profile.lastName?.[0] || ''}`}</AvatarFallback>
+            <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
+              {profile.profileImage ? (
+                <AvatarImage src={profile.profileImage} alt="Profile" />
+              ) : (
+                <AvatarFallback>{`${profile.firstName?.[0] || ''}${profile.lastName?.[0] || ''}`}</AvatarFallback>
+              )}
             </Avatar>
             <div className="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg">
-              <Camera className="h-5 w-5" />
+              <Camera className="h-5 w-5 text-rolodex-secondary" />
             </div>
           </div>
         </div>
@@ -63,25 +73,32 @@ const Contact = () => {
 
         {/* Action Buttons */}
         <div className="mt-8 space-y-3">
-          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+          <button className="w-full bg-rolodex-secondary text-white py-4 rounded-xl flex items-center justify-center space-x-2">
             <span className="text-lg">My Profile Privacy</span>
           </button>
 
           {profile.instagramLink && (
-            <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
-              <Instagram className="h-5 w-5" />
-              <span className="text-lg">View Instagram Profile</span>
-            </button>
+            <>
+              <button className="w-full bg-rolodex-secondary text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+                <Instagram className="h-5 w-5" />
+                <span className="text-lg">View Instagram Profile</span>
+              </button>
+
+              <button className="w-full bg-rolodex-secondary text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+                <Instagram className="h-5 w-5" />
+                <span className="text-lg">Share Your Instagram</span>
+              </button>
+            </>
           )}
 
           {profile.tiktokLink && (
-            <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+            <button className="w-full bg-rolodex-secondary text-white py-4 rounded-xl flex items-center justify-center space-x-2">
               <span className="text-lg">View Tiktok Followers</span>
             </button>
           )}
 
           {profile.linkedinLink && (
-            <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+            <button className="w-full bg-rolodex-secondary text-white py-4 rounded-xl flex items-center justify-center space-x-2">
               <Linkedin className="h-5 w-5" />
               <span className="text-lg">View LinkedIn Profile Data</span>
             </button>
@@ -100,7 +117,7 @@ const Contact = () => {
             <button className="flex flex-col items-center text-gray-500">
               <span className="text-xs">PA</span>
             </button>
-            <button className="flex flex-col items-center text-blue-500">
+            <button className="flex flex-col items-center text-rolodex-secondary">
               <span className="text-xs">Profile</span>
             </button>
             <button className="flex flex-col items-center text-gray-500">
