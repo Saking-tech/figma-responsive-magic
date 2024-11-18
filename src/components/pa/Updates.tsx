@@ -43,7 +43,7 @@ const updates: Update[] = [
 
 const Updates = () => {
   return (
-    <div className="mb-6">
+    <div className="mb-12">
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-semibold">Updates</h2>
         <Button variant="link" className="text-gray-500">

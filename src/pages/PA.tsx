@@ -86,7 +86,7 @@ const PA = () => {
         <Updates />
 
         {/* History Section */}
-        <div className="mb-6">
+        <div className="mb-12">
           <div className="flex justify-between items-center mb-4">
             <h2 className="font-semibold">History</h2>
             <Button variant="link" className="text-gray-500">
