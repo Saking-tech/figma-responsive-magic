@@ -9,6 +9,7 @@ import SignIn from "./pages/SignIn";
 import ProfileSetup from "./pages/ProfileSetup";
 import ProfileComplete from "./pages/ProfileComplete";
 import PA from "./pages/PA";
+import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/profile-setup" element={<ProfileSetup />} />
           <Route path="/profile-complete" element={<ProfileComplete />} />
           <Route path="/pa" element={<PA />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
