@@ -5,7 +5,6 @@ import { Send, Mic, MoreVertical } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationBar from '@/components/NavigationBar';
 import Header from '@/components/pa/Header';
-import WelcomeMessage from '@/components/pa/WelcomeMessage';
 import Updates from '@/components/pa/Updates';
 
 interface ChatMessage {
@@ -32,18 +31,6 @@ const PA = () => {
       text: "Make a phone call to Randy at 3pm",
       color: "bg-blue-500"
     },
-    {
-      id: 2,
-      icon: "💬",
-      text: "Send a message to Jen that I can't",
-      color: "bg-blue-500"
-    },
-    {
-      id: 3,
-      icon: "🔍",
-      text: "Find a contact number from my favor",
-      color: "bg-purple-500"
-    }
   ];
 
   const handleBotResponse = (userMessage: string): string => {
@@ -82,7 +69,22 @@ const PA = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <div className="flex-1 px-6 pb-28">
         <Header />
-        <WelcomeMessage />
+        {/* Chat Messages */}
+        <ScrollArea className="h-[calc(100vh-340px)]">
+          <div className="space-y-4 mb-4">
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} animate-fade-in`}
+              >
+                <div className={`max-w-[80%] ${message.isUser ? 'bg-rolodex-secondary text-white' : 'bg-gray-100'} rounded-2xl px-4 py-2`}>
+                  <p>{message.text}</p>
+                  <span className="text-xs text-gray-500 mt-1">{message.timestamp}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
         <Updates />
 
         {/* History Section */}
@@ -110,22 +112,7 @@ const PA = () => {
           </div>
         </div>
 
-        {/* Chat Messages */}
-        <ScrollArea className="h-[calc(100vh-340px)]">
-          <div className="space-y-4 mb-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} animate-fade-in`}
-              >
-                <div className={`max-w-[80%] ${message.isUser ? 'bg-rolodex-secondary text-white' : 'bg-gray-100'} rounded-2xl px-4 py-2`}>
-                  <p>{message.text}</p>
-                  <span className="text-xs text-gray-500 mt-1">{message.timestamp}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ScrollArea>
+        
 
         {/* Input Section */}
         <div className="fixed bottom-24 left-0 right-0 px-6">
