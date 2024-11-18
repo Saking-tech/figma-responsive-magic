@@ -1,190 +1,100 @@
-import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Keyboard, User, Settings, MessageSquare, Phone, Instagram, Linkedin, Facebook, ArrowDownAZ } from "lucide-react";
+import React from 'react';
+import { ArrowLeft, Camera, Instagram, Linkedin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Contact = () => {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const contacts = [
-    {
-      id: 1,
-      letter: 'A',
-      contacts: [
-        {
-          name: 'Andrea Lawerence',
-          phone: '778-790-3421',
-          email: 'andrea123@gmail.com',
-          avatar: '/placeholder.svg'
-        },
-        {
-          name: 'Andy Tang',
-          phone: '604-717-8902',
-          email: 'andyft@gmail.com',
-          avatar: '/placeholder.svg'
-        }
-      ]
-    },
-    {
-      id: 2,
-      letter: 'B',
-      contacts: [
-        {
-          name: 'Bella Seo',
-          phone: '844-231-5782',
-          email: 'bell1006@gmail.com',
-          avatar: '/placeholder.svg'
-        },
-        {
-          name: 'Jenn',
-          phone: '844-231-5782',
-          email: 'bell1006@gmail.com',
-          avatar: '/placeholder.svg'
-        }
-      ]
-    }
-  ];
+  
+  // This would typically come from your user context/state
+  const profile = {
+    name: 'Angela Kim',
+    phone: '(+1) 778-798-7901',
+    email: 'angela123@gmail.com',
+    instagram: 'https://instagram.com/angela',
+    linkedin: 'https://linkedin.com/in/angela',
+    tiktok: 'https://tiktok.com/@angela'
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 w-full">
-      {/* Top Navigation */}
-      <div className="sticky top-0 bg-white shadow-sm z-10 w-full">
-        <div className="flex items-center p-4 w-full">
-          <div className="flex-1 px-4">
-            <Input
-              type="search"
-              placeholder="Search"
-              className="w-full bg-gray-100"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          <Button variant="ghost" size="icon" className="ml-2">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="4" cy="12" r="2" fill="#000"/>
-              <circle cx="12" cy="12" r="2" fill="#000"/>
-              <circle cx="20" cy="12" r="2" fill="#000"/>
-            </svg>
-          </Button>
-        </div>
-
-        {/* Sort Icons */}
-        <div className="w-full px-4 pb-2 grid grid-cols-5 gap-2">
-          <div className="flex justify-center">
-            <ArrowDownAZ className="h-6 w-6 text-blue-500" />
-          </div>
-          <div className="flex justify-center">
-            <Instagram className="h-6 w-6 text-gray-500" />
-          </div>
-          <div className="flex justify-center">
-            <Linkedin className="h-6 w-6 text-gray-500" />
-          </div>
-          <div className="flex justify-center">
-            <svg
-              viewBox="0 0 24 24"
-              className="h-6 w-6 text-gray-500"
-              fill="currentColor"
-            >
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-            </svg>
-          </div>
-          <div className="flex justify-center">
-            <Facebook className="h-6 w-6 text-gray-500" />
-          </div>
-        </div>
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Header Section with Background */}
+      <div className="relative h-64 bg-gradient-to-b from-black/50 to-transparent bg-cover bg-center"
+           style={{ backgroundImage: 'url("/lovable-uploads/101ce581-b49a-4216-a3f6-3f349b4d5da8.png")' }}>
+        <button 
+          onClick={() => navigate(-1)}
+          className="absolute top-4 left-4 text-white p-2"
+        >
+          <ArrowLeft className="h-6 w-6" />
+        </button>
       </div>
 
-      {/* Contact List */}
-      <div className="pb-20 w-full">
-        {contacts.map((section) => (
-          <div key={section.id} className="w-full">
-            <div className="bg-blue-500 text-white px-4 py-2 w-full">
-              {section.letter}
+      {/* Profile Content */}
+      <div className="relative px-6 -mt-20">
+        {/* Profile Image */}
+        <div className="flex justify-center">
+          <div className="relative">
+            <Avatar className="w-32 h-32 border-4 border-white">
+              <AvatarFallback>AK</AvatarFallback>
+            </Avatar>
+            <div className="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg">
+              <Camera className="h-5 w-5" />
             </div>
-            {section.contacts.map((contact, index) => (
-              <div key={index} className="bg-white p-4 border-b flex items-center justify-between w-full">
-                <div className="flex items-center space-x-3">
-                  <Avatar>
-                    <AvatarImage src={contact.avatar} alt={contact.name} />
-                    <AvatarFallback>{contact.name[0]}</AvatarFallback>
-                  </Avatar>
-                  <div className="text-left">
-                    <h3 className="font-medium">{contact.name}</h3>
-                    <p className="text-sm text-gray-600">{contact.phone}</p>
-                    <p className="text-sm text-gray-600">{contact.email}</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Button variant="ghost" size="icon" className="text-blue-500">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 4V20M20 12H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                  </Button>
-                  <Button variant="ghost" size="icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="4" cy="12" r="2" fill="currentColor"/>
-                      <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                      <circle cx="20" cy="12" r="2" fill="currentColor"/>
-                    </svg>
-                  </Button>
-                </div>
-              </div>
-            ))}
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t w-full">
-        <div className="flex justify-around items-center h-20 px-6">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => navigate('/keypad')}
-            className="flex flex-col items-center gap-1"
-          >
-            <Keyboard className="h-6 w-6 text-gray-500" />
-            <span className="text-xs text-gray-500">Keypad</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => navigate('/contact')} 
-            className="flex flex-col items-center gap-1"
-          >
-            <Phone className="h-6 w-6 text-blue-500" />
-            <span className="text-xs text-blue-500">Contact</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => navigate('/pa')}
-            className="flex flex-col items-center gap-1"
-          >
-            <MessageSquare className="h-6 w-6 text-gray-500" />
-            <span className="text-xs text-gray-500">PA</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => navigate('/profile')}
-            className="flex flex-col items-center gap-1"
-          >
-            <User className="h-6 w-6 text-gray-500" />
-            <span className="text-xs text-gray-500">Profile</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={() => navigate('/setting')}
-            className="flex flex-col items-center gap-1"
-          >
-            <Settings className="h-6 w-6 text-gray-500" />
-            <span className="text-xs text-gray-500">Setting</span>
-          </Button>
+        {/* Profile Info */}
+        <div className="text-center mt-4 space-y-1">
+          <h1 className="text-2xl font-semibold">{profile.name}</h1>
+          <p className="text-gray-600">{profile.phone}</p>
+          <p className="text-gray-600">{profile.email}</p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="mt-8 space-y-3">
+          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+            <span className="text-lg">My Profile Privacy</span>
+          </button>
+
+          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+            <Instagram className="h-5 w-5" />
+            <span className="text-lg">View Instagram Profile</span>
+          </button>
+
+          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+            <Instagram className="h-5 w-5" />
+            <span className="text-lg">Share Your Instagram</span>
+          </button>
+
+          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+            <span className="text-lg">View Tiktok Followers</span>
+          </button>
+
+          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+            <Linkedin className="h-5 w-5" />
+            <span className="text-lg">View LinkedIn Profile Data</span>
+          </button>
+        </div>
+
+        {/* Navigation Bar */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-4">
+          <div className="flex justify-around items-center px-6">
+            <button className="flex flex-col items-center text-gray-500">
+              <span className="text-xs">Keypad</span>
+            </button>
+            <button className="flex flex-col items-center text-gray-500">
+              <span className="text-xs">Contact</span>
+            </button>
+            <button className="flex flex-col items-center text-gray-500">
+              <span className="text-xs">PA</span>
+            </button>
+            <button className="flex flex-col items-center text-blue-500">
+              <span className="text-xs">Profile</span>
+            </button>
+            <button className="flex flex-col items-center text-gray-500">
+              <span className="text-xs">Setting</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
