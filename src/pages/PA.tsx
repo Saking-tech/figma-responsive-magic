@@ -35,7 +35,7 @@ const PA = () => {
 
   const handleBotResponse = (userMessage: string): string => {
     const lowerCaseMessage = userMessage.toLowerCase();
-    
+
     if (lowerCaseMessage.includes("quit chat")) {
       return "Good bye!";
     } else if (lowerCaseMessage.includes("search")) {
@@ -70,13 +70,10 @@ const PA = () => {
       <div className="flex-1 px-6 pb-28">
         <Header />
         {/* Chat Messages */}
-        <ScrollArea className="h-[calc(100vh-340px)]">
+        <ScrollArea className="h-[calc(100vh-340px)] chat-background">
           <div className="space-y-4 mb-4">
             {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} animate-fade-in`}
-              >
+              <div key={index} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} animate-fade-in`}>
                 <div className={`max-w-[80%] ${message.isUser ? 'bg-rolodex-secondary text-white' : 'bg-gray-100'} rounded-2xl px-4 py-2`}>
                   <p>{message.text}</p>
                   <span className="text-xs text-gray-500 mt-1">{message.timestamp}</span>
@@ -112,7 +109,7 @@ const PA = () => {
           </div>
         </div>
 
-        
+
 
         {/* Input Section */}
         <div className="fixed bottom-24 left-0 right-0 px-6">
@@ -124,13 +121,13 @@ const PA = () => {
               className="w-full h-14 pl-6 pr-16 rounded-full bg-black text-white"
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
-            <Button 
+            <Button
               size="icon"
               className="bg-rolodex-secondary text-white rounded-full w-14 h-14 flex-shrink-0"
             >
               <Mic className="h-5 w-5" />
             </Button>
-            <Button 
+            <Button
               size="icon"
               onClick={handleSendMessage}
               className="bg-rolodex-secondary text-white rounded-full w-14 h-14 flex-shrink-0"

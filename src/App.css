@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+.chat-background {
+  background-image: "public/lovable-uploads/PA_bg.png"; /* Replace with your image path */
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the background image */
+}
