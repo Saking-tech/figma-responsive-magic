@@ -42,7 +42,11 @@ const ProfileSetup = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically make an API call to save the profile data
+    // Save profile data to localStorage
+    localStorage.setItem('profileData', JSON.stringify({
+      ...formData,
+      profileImage
+    }));
     toast.success("Profile updated successfully!");
     navigate('/profile-complete');
   };

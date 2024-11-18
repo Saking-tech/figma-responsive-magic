@@ -6,15 +6,26 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 const Contact = () => {
   const navigate = useNavigate();
   
-  // This would typically come from your user context/state
-  const profile = {
-    name: 'Angela Kim',
-    phone: '(+1) 778-798-7901',
-    email: 'angela123@gmail.com',
-    instagram: 'https://instagram.com/angela',
-    linkedin: 'https://linkedin.com/in/angela',
-    tiktok: 'https://tiktok.com/@angela'
+  // Get profile data from localStorage (this would typically come from your backend/state management)
+  const getProfileData = () => {
+    const profileData = localStorage.getItem('profileData');
+    if (profileData) {
+      return JSON.parse(profileData);
+    }
+    return {
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      email: '',
+      instagramLink: '',
+      linkedinLink: '',
+      tiktokLink: '',
+      note: ''
+    };
   };
+
+  const profile = getProfileData();
+  const fullName = `${profile.firstName} ${profile.lastName}`.trim();
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -35,7 +46,7 @@ const Contact = () => {
         <div className="flex justify-center">
           <div className="relative">
             <Avatar className="w-32 h-32 border-4 border-white">
-              <AvatarFallback>AK</AvatarFallback>
+              <AvatarFallback>{`${profile.firstName?.[0] || ''}${profile.lastName?.[0] || ''}`}</AvatarFallback>
             </Avatar>
             <div className="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg">
               <Camera className="h-5 w-5" />
@@ -45,9 +56,9 @@ const Contact = () => {
 
         {/* Profile Info */}
         <div className="text-center mt-4 space-y-1">
-          <h1 className="text-2xl font-semibold">{profile.name}</h1>
-          <p className="text-gray-600">{profile.phone}</p>
-          <p className="text-gray-600">{profile.email}</p>
+          <h1 className="text-2xl font-semibold">{fullName || 'No Name Set'}</h1>
+          <p className="text-gray-600">{profile.phoneNumber || 'No Phone Number'}</p>
+          <p className="text-gray-600">{profile.email || 'No Email'}</p>
         </div>
 
         {/* Action Buttons */}
@@ -56,24 +67,25 @@ const Contact = () => {
             <span className="text-lg">My Profile Privacy</span>
           </button>
 
-          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
-            <Instagram className="h-5 w-5" />
-            <span className="text-lg">View Instagram Profile</span>
-          </button>
+          {profile.instagramLink && (
+            <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+              <Instagram className="h-5 w-5" />
+              <span className="text-lg">View Instagram Profile</span>
+            </button>
+          )}
 
-          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
-            <Instagram className="h-5 w-5" />
-            <span className="text-lg">Share Your Instagram</span>
-          </button>
+          {profile.tiktokLink && (
+            <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+              <span className="text-lg">View Tiktok Followers</span>
+            </button>
+          )}
 
-          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
-            <span className="text-lg">View Tiktok Followers</span>
-          </button>
-
-          <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
-            <Linkedin className="h-5 w-5" />
-            <span className="text-lg">View LinkedIn Profile Data</span>
-          </button>
+          {profile.linkedinLink && (
+            <button className="w-full bg-blue-500 text-white py-4 rounded-xl flex items-center justify-center space-x-2">
+              <Linkedin className="h-5 w-5" />
+              <span className="text-lg">View LinkedIn Profile Data</span>
+            </button>
+          )}
         </div>
 
         {/* Navigation Bar */}
