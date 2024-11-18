@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, Mic } from "lucide-react";
+import { Send, Mic, MoreVertical } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationBar from '@/components/NavigationBar';
 import Header from '@/components/pa/Header';
