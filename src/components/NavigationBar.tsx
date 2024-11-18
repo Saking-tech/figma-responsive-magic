@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Keyboard, User, Settings, MessageSquare, Phone } from "lucide-react";
+import { Keyboard, User, Settings, MessageSquare } from "lucide-react";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
@@ -19,14 +19,6 @@ const NavigationBar = () => {
           className={isActive('/keypad') ? 'text-rolodex-secondary' : ''}
         >
           <Keyboard className="h-6 w-6" />
-        </Button>
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={() => navigate('/contact')}
-          className={isActive('/contact') ? 'text-rolodex-secondary' : ''}
-        >
-          <Phone className="h-6 w-6" />
         </Button>
         <Button 
           variant="ghost" 
