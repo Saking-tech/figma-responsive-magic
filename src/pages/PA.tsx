@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, Mic, MoreVertical } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { Send, Mic } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationBar from '@/components/NavigationBar';
+import Header from '@/components/pa/Header';
+import WelcomeMessage from '@/components/pa/WelcomeMessage';
+import Updates from '@/components/pa/Updates';
 
 interface ChatMessage {
   text: string;
   isUser: boolean;
   timestamp?: string;
-}
-
-interface Update {
-  id: number;
-  user: string;
-  avatar: string;
-  action: string;
-  time: string;
 }
 
 interface HistoryItem {
@@ -28,40 +22,8 @@ interface HistoryItem {
 }
 
 const PA = () => {
-  const navigate = useNavigate();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState("");
-  
-  const updates: Update[] = [
-    {
-      id: 1,
-      user: "Jake",
-      avatar: "/placeholder.svg",
-      action: "updated new phone number",
-      time: "Today at 6:45 AM"
-    },
-    {
-      id: 2,
-      user: "Lou",
-      avatar: "/placeholder.svg",
-      action: "updated new email address",
-      time: "Yesterday at 07:00 PM"
-    },
-    {
-      id: 3,
-      user: "Lou",
-      avatar: "/placeholder.svg",
-      action: "updated new memo",
-      time: "Yesterday at 07:00 PM"
-    },
-    {
-      id: 4,
-      user: "Lou",
-      avatar: "/placeholder.svg",
-      action: "updated new phone number",
-      time: "Yesterday at 07:00 PM"
-    }
-  ];
 
   const history: HistoryItem[] = [
     {
@@ -73,7 +35,7 @@ const PA = () => {
     {
       id: 2,
       icon: "💬",
-      text: "Send an message to Jen that I can't",
+      text: "Send a message to Jen that I can't",
       color: "bg-blue-500"
     },
     {
@@ -91,7 +53,6 @@ const PA = () => {
       return "Good bye!";
     } else if (lowerCaseMessage.includes("search")) {
       const searchQuery = userMessage.toLowerCase().replace("search", "").trim();
-      // Open Google search in a new tab
       window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, '_blank');
       return `Searching for "${searchQuery}" in Google...`;
     }
@@ -120,44 +81,9 @@ const PA = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <div className="flex-1 px-6 pb-28">
-        {/* Header */}
-        <div className="flex justify-between items-start pt-10 mb-6">
-          <div>
-            <h1 className="text-2xl font-bold mb-2">Hi, Becka</h1>
-            <p className="text-gray-600">How can I help you today?</p>
-          </div>
-          <img 
-            src="/placeholder.svg"
-            alt="Profile"
-            className="w-12 h-12 rounded-full"
-          />
-        </div>
-
-        {/* Updates Section */}
-        <div className="mb-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="font-semibold">Updates</h2>
-            <Button variant="link" className="text-gray-500">
-              See all
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {updates.map((update) => (
-              <div key={update.id} className="bg-black text-white rounded-xl p-4 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <img src={update.avatar} alt={update.user} className="w-10 h-10 rounded-full" />
-                  <div>
-                    <p className="font-medium">{update.user} {update.action}</p>
-                    <p className="text-sm text-gray-400">{update.time}</p>
-                  </div>
-                </div>
-                <Button variant="ghost" size="icon" className="text-gray-400">
-                  <MoreVertical className="h-5 w-5" />
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Header />
+        <WelcomeMessage />
+        <Updates />
 
         {/* History Section */}
         <div className="mb-6">
