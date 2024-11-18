@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Facebook, Twitter } from "lucide-react";
 import { toast } from "sonner";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +20,10 @@ const SignIn = () => {
     }
 
     // Here you would typically make an API call to authenticate the user
+    // For now, we'll simulate a successful sign-in
     toast.success("Sign in successful!");
+    // Navigate to the main interface (PA page) after successful sign-in
+    navigate('/pa');
   };
 
   return (
