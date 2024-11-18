@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send } from "lucide-react";
+import { Send, Mic } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationBar from '@/components/NavigationBar';
 
@@ -13,11 +12,35 @@ interface ChatMessage {
   timestamp?: string;
 }
 
+interface Update {
+  id: number;
+  user: string;
+  avatar: string;
+  action: string;
+  time: string;
+}
+
 const PA = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState("");
-  const [isUpdatesOpen, setIsUpdatesOpen] = useState(false);
+  
+  const updates: Update[] = [
+    {
+      id: 1,
+      user: "Jake",
+      avatar: "/placeholder.svg",
+      action: "updated new phone number",
+      time: "Today at 6:45 AM"
+    },
+    {
+      id: 2,
+      user: "Lou",
+      avatar: "/placeholder.svg",
+      action: "updated new email address",
+      time: "Yesterday at 07:00 PM"
+    }
+  ];
 
   const handleBotResponse = (userMessage: string): string => {
     const lowerCaseMessage = userMessage.toLowerCase();
@@ -68,6 +91,15 @@ const PA = () => {
           />
         </div>
 
+        {/* Robot Illustration */}
+        <div className="flex justify-center my-8">
+          <img 
+            src="/robot-illustration.svg"
+            alt="AI Assistant"
+            className="w-48 h-48"
+          />
+        </div>
+
         {/* Chat Messages */}
         <ScrollArea className="h-[calc(100vh-340px)]">
           <div className="space-y-4 mb-4">
@@ -85,46 +117,52 @@ const PA = () => {
           </div>
         </ScrollArea>
 
+        {/* Updates Section */}
+        <div className="mt-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="font-semibold">Updates</h2>
+            <Button variant="link" className="text-rolodex-secondary">
+              See all
+            </Button>
+          </div>
+          <div className="space-y-3">
+            {updates.map((update) => (
+              <div key={update.id} className="bg-black text-white rounded-xl p-4 flex items-center space-x-3">
+                <img src={update.avatar} alt={update.user} className="w-10 h-10 rounded-full" />
+                <div>
+                  <p className="font-medium">{update.user} {update.action}</p>
+                  <p className="text-sm text-gray-400">{update.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Input Section */}
-        <div className="fixed bottom-36 left-0 right-0 px-6">
-          <div className="relative">
+        <div className="fixed bottom-24 left-0 right-0 px-6">
+          <div className="relative flex space-x-2">
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               placeholder="Ask me anything"
-              className="w-full h-14 pl-6 pr-16 rounded-full bg-gray-100"
+              className="w-full h-14 pl-6 pr-16 rounded-full bg-black text-white"
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
             <Button 
               size="icon"
+              className="bg-rolodex-secondary text-white rounded-full w-14 h-14 flex-shrink-0"
+            >
+              <Mic className="h-5 w-5" />
+            </Button>
+            <Button 
+              size="icon"
               onClick={handleSendMessage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-rolodex-secondary text-white rounded-full"
+              className="bg-rolodex-secondary text-white rounded-full w-14 h-14 flex-shrink-0"
             >
               <Send className="h-5 w-5" />
             </Button>
           </div>
         </div>
-      </div>
-
-      {/* Updates Section (Collapsible) */}
-      <div className="fixed bottom-20 left-0 right-0">
-        <Collapsible
-          open={isUpdatesOpen}
-          onOpenChange={setIsUpdatesOpen}
-          className="w-full bg-white border-t shadow-lg"
-        >
-          <CollapsibleTrigger className="w-full p-4 flex justify-between items-center">
-            <span className="font-semibold">Updates</span>
-            <span className="text-sm text-gray-500">
-              {isUpdatesOpen ? '▼' : '▲'}
-            </span>
-          </CollapsibleTrigger>
-          <CollapsibleContent className="p-4">
-            <div className="space-y-2">
-              <p className="text-sm text-gray-600">Recent updates will appear here...</p>
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
       </div>
 
       <NavigationBar />
