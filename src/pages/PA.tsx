@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send, Mic } from "lucide-react";
+import { Send, Mic, MoreVertical } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import NavigationBar from '@/components/NavigationBar';
@@ -18,6 +18,13 @@ interface Update {
   avatar: string;
   action: string;
   time: string;
+}
+
+interface HistoryItem {
+  id: number;
+  icon: string;
+  text: string;
+  color: string;
 }
 
 const PA = () => {
@@ -39,6 +46,41 @@ const PA = () => {
       avatar: "/placeholder.svg",
       action: "updated new email address",
       time: "Yesterday at 07:00 PM"
+    },
+    {
+      id: 3,
+      user: "Lou",
+      avatar: "/placeholder.svg",
+      action: "updated new memo",
+      time: "Yesterday at 07:00 PM"
+    },
+    {
+      id: 4,
+      user: "Lou",
+      avatar: "/placeholder.svg",
+      action: "updated new phone number",
+      time: "Yesterday at 07:00 PM"
+    }
+  ];
+
+  const history: HistoryItem[] = [
+    {
+      id: 1,
+      icon: "📞",
+      text: "Make a phone call to Randy at 3pm",
+      color: "bg-blue-500"
+    },
+    {
+      id: 2,
+      icon: "💬",
+      text: "Send an message to Jen that I can't",
+      color: "bg-blue-500"
+    },
+    {
+      id: 3,
+      icon: "🔍",
+      text: "Find a contact number from my favor",
+      color: "bg-purple-500"
     }
   ];
 
@@ -91,13 +133,55 @@ const PA = () => {
           />
         </div>
 
-        {/* Robot Illustration */}
-        <div className="flex justify-center my-8">
-          <img 
-            src="/robot-illustration.svg"
-            alt="AI Assistant"
-            className="w-48 h-48"
-          />
+        {/* Updates Section */}
+        <div className="mb-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="font-semibold">Updates</h2>
+            <Button variant="link" className="text-gray-500">
+              See all
+            </Button>
+          </div>
+          <div className="space-y-3">
+            {updates.map((update) => (
+              <div key={update.id} className="bg-black text-white rounded-xl p-4 flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <img src={update.avatar} alt={update.user} className="w-10 h-10 rounded-full" />
+                  <div>
+                    <p className="font-medium">{update.user} {update.action}</p>
+                    <p className="text-sm text-gray-400">{update.time}</p>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon" className="text-gray-400">
+                  <MoreVertical className="h-5 w-5" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* History Section */}
+        <div className="mb-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="font-semibold">History</h2>
+            <Button variant="link" className="text-gray-500">
+              See all
+            </Button>
+          </div>
+          <div className="space-y-3">
+            {history.map((item) => (
+              <div key={item.id} className="bg-black text-white rounded-xl p-4 flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className={`w-10 h-10 ${item.color} rounded-full flex items-center justify-center text-xl`}>
+                    {item.icon}
+                  </div>
+                  <p className="font-medium">{item.text}</p>
+                </div>
+                <Button variant="ghost" size="icon" className="text-gray-400">
+                  <MoreVertical className="h-5 w-5" />
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Chat Messages */}
@@ -116,27 +200,6 @@ const PA = () => {
             ))}
           </div>
         </ScrollArea>
-
-        {/* Updates Section */}
-        <div className="mt-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="font-semibold">Updates</h2>
-            <Button variant="link" className="text-rolodex-secondary">
-              See all
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {updates.map((update) => (
-              <div key={update.id} className="bg-black text-white rounded-xl p-4 flex items-center space-x-3">
-                <img src={update.avatar} alt={update.user} className="w-10 h-10 rounded-full" />
-                <div>
-                  <p className="font-medium">{update.user} {update.action}</p>
-                  <p className="text-sm text-gray-400">{update.time}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Input Section */}
         <div className="fixed bottom-24 left-0 right-0 px-6">
